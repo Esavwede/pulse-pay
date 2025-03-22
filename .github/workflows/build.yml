@@ -31,8 +31,3 @@ jobs:
         run: npm run format
       - name: Run lint
         run: npm run lint
-      - name: Run Semantic Release
-        env:
-          CI: true
-          RELEASE_TOKEN: ${{ secrets.RELEASE_TOKEN }}
-        run: npx release
