@@ -16,9 +16,8 @@ module.exports = {
     es6: true,
   },
   rules: {
-    // You can override rules here
-    // For example, if you find that Airbnb’s "no-console" is too strict:
     "no-console": "off",
     "prettier/prettier": "error",
+    semi: ["error", "off"],
   },
-};
+}
