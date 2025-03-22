@@ -7,7 +7,7 @@
     "start": "node ./dist/app.js",
     "test": "test",
     "lint": "eslint . --ext .ts",
-    "format": "prettier --write \"**/*.{ts,js,json,md}\"",
+    "format": "prettier --write \"**/*.{ts,js,json,md,yml}\"",
     "dev": "nodemon ./src/app.ts",
     "release": "semantic-release"
   },
