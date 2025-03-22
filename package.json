@@ -4,10 +4,12 @@
   "description": "a payment service for merchants",
   "main": "app.ts",
   "scripts": {
+    "start": "node ./dist/app.js",
     "test": "test",
     "lint": "eslint . --ext .ts",
     "format": "prettier --write \"**/*.{ts,js,json,md}\"",
-    "dev": "nodemon ./src/app.ts"
+    "dev": "nodemon ./src/app.ts",
+    "release": "semantic-release"
   },
   "repository": {
     "type": "git",
