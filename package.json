@@ -1,0 +1,58 @@
+{
+  "name": "payment-service",
+  "version": "1.0.0-alpha.1",
+  "description": "a payment service for merchants",
+  "main": "app.ts",
+  "scripts": {
+    "test": "test",
+    "lint": "eslint . --ext .ts",
+    "format": "prettier --write \"**/*.{ts,js,json,md}\"",
+    "dev": "nodemon ./src/app.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/esavwede/payment-service.git"
+  },
+  "keywords": [
+    "payment",
+    "node",
+    "express",
+    "mongo",
+    "redis"
+  ],
+  "author": "ogagaoghene esavwede",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/esavwede/payment-service/issues"
+  },
+  "homepage": "https://github.com/esavwede/payment-service#readme",
+  "devDependencies": {
+    "@types/express": "^5.0.1",
+    "@types/node": "^22.13.10",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
+    "eslint": "^8.57.1",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^18.0.0",
+    "eslint-config-prettier": "^10.1.1",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-prettier": "^5.2.3",
+    "globals": "^16.0.0",
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.9",
+    "npm": "^11.2.0",
+    "prettier": "^3.5.3",
+    "semantic-release": "^24.2.3",
+    "supertest": "^7.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mongoose": "^8.12.1",
+    "peerdeps": "^1.1.1",
+    "pino": "^9.6.0"
+  }
+}

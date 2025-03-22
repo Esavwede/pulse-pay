@@ -1,0 +1,23 @@
+Base 
+
+	Base installation and setup
+	core dependencies
+	Hosting
+	CI/CD
+	testing 
+	Dependencies
+	Version Control
+	Security
+	Documentation ( automated ) 
+	Clean Code 
+	Architecture 
+	Linting 
+	Monitoring
+	Compliance
+	SLA's
+	Deprecation Policy
+	Analytics
+	Api Admin
+	Quality Software | Reliability | Performance | Security | Maintainability | Portability | Scalability 
+
+Features 
