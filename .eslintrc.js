@@ -18,6 +18,6 @@ module.exports = {
   rules: {
     "no-console": "off",
     "prettier/prettier": "error",
-    semi: "off",
+    semi: ["error", "never"],
   },
 }

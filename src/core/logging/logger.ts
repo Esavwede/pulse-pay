@@ -1,5 +1,3 @@
-import dotenv from "dotenv"
-dotenv.config()
 import devLogger from "./dev-logger/dev-logger"
 import prodLogger from "./prod-logger/prod-logger"
 

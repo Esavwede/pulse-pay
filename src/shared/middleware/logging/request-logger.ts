@@ -13,7 +13,11 @@ declare global {
   }
 }
 
-export function requestLogger(req: Request, res: Response, next: NextFunction) {
+export default function requestLogger(
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) {
   // Get a request id from the header or generate a new one
   const requestId = (req.headers["x-request-id"] as string) || uuidv4()
   req.requestId = requestId
