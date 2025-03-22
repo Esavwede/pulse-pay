@@ -4,14 +4,17 @@
   "description": "a payment service for merchants",
   "main": "app.ts",
   "scripts": {
+    "build": "tsc",
+    "start": "node ./dist/app.js",
     "test": "test",
     "lint": "eslint . --ext .ts",
-    "format": "prettier --write \"**/*.{ts,js,json,md}\"",
-    "dev": "nodemon ./src/app.ts"
+    "format": "prettier --write \"**/*.{ts,js,json,md,yml}\"",
+    "dev": "nodemon ./src/app.ts",
+    "release": "semantic-release"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/esavwede/payment-service.git"
+    "url": "ghttps://github.com/Esavwede/pulse-pay.git"
   },
   "keywords": [
     "payment",
@@ -23,10 +26,13 @@
   "author": "ogagaoghene esavwede",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/esavwede/payment-service/issues"
+    "url": "https://github.com/esavwede/pulse-pay/issues"
   },
-  "homepage": "https://github.com/esavwede/payment-service#readme",
+  "homepage": "https://github.com/esavwede/pulse-pay#readme",
   "devDependencies": {
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^11.0.1",
     "@types/express": "^5.0.1",
     "@types/node": "^22.13.10",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
@@ -42,7 +48,6 @@
     "nodemon": "^3.1.9",
     "npm": "^11.2.0",
     "pino-multi-stream": "^6.0.0",
-    "pino-pretty": "^13.0.0",
     "prettier": "^3.5.3",
     "semantic-release": "^24.2.3",
     "supertest": "^7.0.0",
@@ -56,6 +61,7 @@
     "mongoose": "^8.12.1",
     "pino": "^9.6.0",
     "pino-http": "^10.4.0",
+    "pino-pretty": "^13.0.0",
     "uuid": "^11.1.0"
   }
 }

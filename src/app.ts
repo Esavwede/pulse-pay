@@ -1,7 +1,7 @@
 import express from "express"
 import PinoHttp from "pino-http"
 import logger from "./core/logging/logger"
-import { requestLogger } from "./shared/middleware/logging/request-logger"
+import requestLogger from "./shared/middleware/logging/request-logger"
 
 const app = express()
 const PORT = process.env.PORT || 3000
