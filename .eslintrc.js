@@ -27,4 +27,23 @@ module.exports = {
       },
     },
   },
+  overrides: [
+    {
+      // Apply to all TypeScript files
+      files: ["**/*.ts", "**/*.tsx"],
+      // General rules for the project
+      rules: {
+        // Your existing rules
+      },
+    },
+    {
+      // Apply only to test files
+      files: ["**/__tests__/**/*.ts", "**/*.test.ts", "**/*.spec.ts"],
+      plugins: ["jest"], // Add Jest plugin
+      extends: ["plugin:jest/recommended"], // Use recommended Jest rules
+      env: {
+        jest: true, // Enable Jest globals
+      },
+    },
+  ],
 }

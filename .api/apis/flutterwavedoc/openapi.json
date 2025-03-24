@@ -12,9 +12,7 @@
   "components": {
     "securitySchemes": {}
   },
-  "security": [
-    {}
-  ],
+  "security": [{}],
   "paths": {},
   "x-readme": {
     "headers": [
