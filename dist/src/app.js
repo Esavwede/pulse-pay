@@ -7,7 +7,9 @@ const express_1 = __importDefault(require("express"));
 const helmet_1 = __importDefault(require("helmet"));
 const cors_1 = __importDefault(require("cors"));
 const logger_1 = __importDefault(require("./core/logging/logger"));
+const request_logger_1 = __importDefault(require("./shared/middleware/logging/request-logger"));
 const payment_routes_1 = __importDefault(require("./payment/payment.routes"));
+const error_handler_1 = __importDefault(require("./shared/middleware/errors/error-handler"));
 const app = (0, express_1.default)();
 const PORT = process.env.PORT || 3000;
 // Security Middleware
@@ -18,17 +20,22 @@ app.use((0, cors_1.default)({
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
 }));
-// Application Logging Middleware
-// app.use(PinoHttp(logger))
-// app.use(requestLogger)
+// logging
+app.use(request_logger_1.default);
 // core middlewares
 app.use(express_1.default.json());
 // routes
 (0, payment_routes_1.default)(app);
-app.get("/", (req, res) => {
-    req.log.info("home route hit");
-    res.send("Hello, world!");
+// error
+app.use(error_handler_1.default);
+process.on("uncaughtException", (err) => {
+    logger_1.default.error("Uncaught Exception:", err);
+    process.exit(1);
+});
+process.on("unhandledRejection", (reason, promise) => {
+    logger_1.default.error("Unhandled Rejection at:", promise, "reason:", reason);
 });
 app.listen(PORT, () => {
     logger_1.default.info(`Server running on port ${PORT}`);
 });
+exports.default = app;
