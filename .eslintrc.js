@@ -20,4 +20,11 @@ module.exports = {
     "prettier/prettier": "error",
     semi: ["error", "never"],
   },
+  settings: {
+    "import/resolver": {
+      node: {
+        extensions: [".js", ".jsx", ".ts", ".tsx"],
+      },
+    },
+  },
 }
