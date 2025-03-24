@@ -1,10 +1,10 @@
 import express from "express"
-import PinoHttp from "pino-http"
 import helmet from "helmet"
 import cors from "cors"
 import logger from "./core/logging/logger"
 import requestLogger from "./shared/middleware/logging/request-logger"
 import paymentRoutes from "./payment/payment.routes"
+import errorHandler from "./shared/middleware/errors/error-handler"
 
 const app = express()
 const PORT = process.env.PORT || 3000
@@ -20,17 +20,17 @@ app.use(
   }),
 )
 
-// Application Logging Middleware
-app.use(PinoHttp(logger))
+// logging
 app.use(requestLogger)
+
+// core middlewares
+app.use(express.json())
 
 // routes
 paymentRoutes(app)
 
-app.get("/", (req, res) => {
-  req.log.info("home route hit")
-  res.send("Hello, world!")
-})
+// error
+app.use(errorHandler)
 
 app.listen(PORT, () => {
   logger.info(`Server running on port ${PORT}`)

@@ -5,7 +5,7 @@
   "main": "app.ts",
   "scripts": {
     "build": "tsc",
-    "start": "node ./dist/app.js",
+    "start": "node ./dist/src/app.js",
     "test": "test",
     "lint": "eslint . --ext .ts",
     "format": "prettier --write \"**/*.{ts,js,json,md,yml}\"",
@@ -58,16 +58,20 @@
     "typescript": "^5.8.2"
   },
   "dependencies": {
+    "body-parser": "^1.20.3",
     "compression": "^1.8.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "express-rate-limit": "^7.5.0",
+    "flutterwave-node-v3": "^1.1.15",
     "helmet": "^8.1.0",
     "mongoose": "^8.12.1",
     "pino": "^9.6.0",
     "pino-http": "^10.4.0",
     "pino-pretty": "^13.0.0",
+    "reflect-metadata": "^0.2.2",
+    "tsyringe": "^4.8.0",
     "uuid": "^11.1.0",
     "zod": "^3.24.2"
   }

@@ -1,11 +1,37 @@
 import { Request, Response } from "express"
-import logger from "../core/logging/logger"
+import PaymentService from "./payment.service"
+import { PaymentRequest, VerifyTransactionWithTxRef } from "./payment.schema"
+import ApiError from "../shared/utils/ApiError"
 
 class PaymentController {
-  // eslint-disable-next-line class-methods-use-this
-  async processPayment(req: Request, res: Response) {
-    logger.info(`Processing payment for order ${req.body.order}`)
-    res.send("Payment processed")
+  private paymentService: PaymentService
+
+  constructor() {
+    this.paymentService = new PaymentService()
+  }
+
+  async processPayment(
+    req: Request<{}, {}, PaymentRequest["body"]>,
+    res: Response,
+  ) {
+    try {
+      const response = await this.paymentService.processPayment(req.body)
+      res.status(200).json({ response })
+    } catch (e: any) {
+      throw new ApiError("server error", 500)
+    }
+  }
+
+  async verifyPayment(
+    req: Request<VerifyTransactionWithTxRef["params"]>,
+    res: Response,
+  ) {
+    try {
+      const response = await this.paymentService.verifyPayment(req.params.txRef)
+      res.status(200).json({ response })
+    } catch (e: any) {
+      throw new ApiError("server", 500)
+    }
   }
 }
 

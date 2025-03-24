@@ -25,4 +25,16 @@ export const PaymentRequestSchema = z.object({
   }),
 })
 
+export const VerifyTransactionWithTxRefRequestSchema = z.object({
+  params: z.object({
+    txRef: z.string({
+      required_error: "Transaction reference is required",
+      invalid_type_error: "Transaction reference must be a string",
+    }),
+  }),
+})
+
 export type PaymentRequest = z.infer<typeof PaymentRequestSchema>
+export type VerifyTransactionWithTxRef = z.infer<
+  typeof VerifyTransactionWithTxRefRequestSchema
+>
