@@ -29,6 +29,11 @@ app.use(express.json())
 // routes
 paymentRoutes(app)
 
+// 404 Middleware
+app.use((req, res) => {
+  res.status(404).json({ success: false, message: "Resource not found" })
+})
+
 // error
 app.use(errorHandler)
 process.on("uncaughtException", (err) => {

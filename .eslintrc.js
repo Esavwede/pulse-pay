@@ -1,7 +1,7 @@
 module.exports = {
   parser: "@typescript-eslint/parser",
   parserOptions: {
-    project: "./tsconfig.json", // Path to your tsconfig.json
+    project: "tsconfig.json", // Path to your tsconfig.json
     ecmaVersion: 2020, // Modern ECMAScript features
     sourceType: "module",
   },
@@ -30,19 +30,10 @@ module.exports = {
   overrides: [
     {
       // Apply to all TypeScript files
-      files: ["**/*.ts", "**/*.tsx"],
+      files: ["__tests__/**/*.test.ts", "__tests__/**/*.spec.ts"],
       // General rules for the project
-      rules: {
-        // Your existing rules
-      },
-    },
-    {
-      // Apply only to test files
-      files: ["**/__tests__/**/*.ts", "**/*.test.ts", "**/*.spec.ts"],
-      plugins: ["jest"], // Add Jest plugin
-      extends: ["plugin:jest/recommended"], // Use recommended Jest rules
       env: {
-        jest: true, // Enable Jest globals
+        jest: true,
       },
     },
   ],

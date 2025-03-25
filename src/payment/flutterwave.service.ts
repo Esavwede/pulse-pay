@@ -47,14 +47,14 @@ export const chargeViaBankTransfer = async (data: PaymentDto) => {
 }
 
 export const verifyPayment = async (txRef: string): Promise<any> => {
-  try {
-    const response = await flw.Transaction.verify_by_tx({
-      tx_ref: txRef,
-    })
+  const response = await flw.Transaction.verify_by_tx({
+    tx_ref: txRef,
+  })
 
-    logger.info("Payment details fetched")
-    return response
-  } catch (e) {
-    throw new ApiError("server error", 500)
+  if (response.status === "error") {
+    logger.error(response.message)
+    throw new ApiError(response.message, 404)
   }
+  logger.info("Payment details fetched")
+  return response
 }

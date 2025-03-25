@@ -1,7 +1,6 @@
-import { Request, Response } from "express"
+import { NextFunction, Request, Response } from "express"
 import PaymentService from "./payment.service"
 import { PaymentRequest, VerifyTransactionWithTxRef } from "./payment.schema"
-import ApiError from "../shared/utils/ApiError"
 
 class PaymentController {
   private paymentService: PaymentService
@@ -13,24 +12,26 @@ class PaymentController {
   async processPayment(
     req: Request<{}, {}, PaymentRequest["body"]>,
     res: Response,
-  ) {
+    next: NextFunction,
+  ): Promise<any> {
     try {
       const response = await this.paymentService.processPayment(req.body)
       res.status(200).json({ response })
     } catch (e: any) {
-      throw new ApiError("server error", 500)
+      next(e)
     }
   }
 
   async verifyPayment(
     req: Request<VerifyTransactionWithTxRef["params"]>,
     res: Response,
+    next: Function,
   ) {
     try {
       const response = await this.paymentService.verifyPayment(req.params.txRef)
       res.status(200).json({ response })
     } catch (e: any) {
-      throw new ApiError("server", 500)
+      next(e)
     }
   }
 }

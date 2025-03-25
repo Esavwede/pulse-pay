@@ -10,8 +10,15 @@ export default function validateRequest(schema: AnyZodObject): RequestHandler {
     })
 
     if (!result.success) {
+      const e = result.error.issues
+      const errs: string[] = []
+      e.forEach((errorObj) => {
+        errs.push(errorObj.message)
+      })
       res.status(400).json({
-        errors: result.error.issues,
+        message: "bad request",
+        success: false,
+        errors: errs,
       })
       return
     }
