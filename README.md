@@ -42,6 +42,12 @@ Pulse-pay is an api that allows users to receive payments
 npm run build
 ```
 
+or
+
+```bash
+npm run build-and-run #to run prettier formatting, eslint, ts building and start server immediately
+```
+
 4. Start the service in development mode:
 
 ```bash
@@ -123,6 +129,10 @@ If the request is successful, the API returns a response with payment authorizat
 
 ### Example Success Response
 
+- **200 Charge Initiated**  
+  Returned when payment details ( bank name, bank account ) are generated for user to receive payment in a specified timeframe
+  **Response Format:**
+
 ```json
 {
   "response": {
@@ -146,18 +156,40 @@ If the request is successful, the API returns a response with payment authorizat
 
 ---
 
-## Error Handling
+#### Error Responses
 
-If an error occurs, the API will return an error response with details about the failure.
+- **404 Not Found**  
+  Returned when route not found
+  **Response Format:**
 
-### Example Error Response
+  ```json
+  {
+    "success": false,
+    "message": "requested resource not found"
+  }
+  ```
 
-```json
-{
-  "status": "error",
-  "message": "Invalid request parameters"
-}
-```
+- **400 Bad Request**  
+  Returned when the request contains invalid data or parameters.  
+  **Response Format:**
+
+  ```json
+  {
+    "success": false,
+    "errors": ["error"]
+  }
+  ```
+
+  - **500 Not Found**  
+    returned when server encounters an error
+    **Response Format:**
+
+  ```json
+  {
+    "success": false,
+    "message": "server error"
+  }
+  ```
 
 ### Status Codes
 
@@ -171,7 +203,7 @@ If an error occurs, the API will return an error response with details about the
 
 ### 2. Retrieve Payment Status
 
-**URL:** `http://localhost:3000/api/v1/payments/{id}`
+**URL:** `http://localhost:3000/api/v1/payments/{txRef}`
 
 **Method:** `GET`
 
@@ -223,20 +255,40 @@ If the request is successful, the API returns the payment details.
 }
 ```
 
----
+#### Error Responses
 
-## Error Handling
+- **404 Not Found**  
+  Returned when no transaction is found for the provided ID.  
+  **Response Format:**
 
-If an error occurs, the API will return an error response with details about the failure.
+  ```json
+  {
+    "success": false,
+    "message": "No transaction was found for this id"
+  }
+  ```
 
-#### Example Error Response
+- **400 Bad Request**  
+  Returned when the request contains invalid data or parameters.  
+  **Response Format:**
 
-```json
-{
-  "status": "error",
-  "message": "Invalid request parameters"
-}
-```
+  ```json
+  {
+    "success": false,
+    "errors": ["error"]
+  }
+  ```
+
+  - **500 Not Found**  
+    returned when server encounters an error
+    **Response Format:**
+
+  ```json
+  {
+    "success": false,
+    "message": "server error"
+  }
+  ```
 
 ---
 

@@ -16,12 +16,8 @@ export default class PaymentService {
 
   // eslint-disable-next-line class-methods-use-this
   async verifyPayment(txRef: string): Promise<JSON> {
-    try {
-      let response = await verifyPayment(txRef)
-      response = extractJsonFromJson(response)
-      return response
-    } catch (e: any) {
-      throw new ApiError("server error", 500)
-    }
+    let response = await verifyPayment(txRef)
+    response = extractJsonFromJson(response)
+    return response
   }
 }

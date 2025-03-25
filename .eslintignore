@@ -1,4 +1,1 @@
-test/**/*
-*.test.ts
-*.spec.ts
 jest.config.js

@@ -1,4 +1,9 @@
+/** @type {import('ts-jest').JestConfigWithTsJest} **/
 module.exports = {
-  preset: "ts-jest", // Use ts-jest to handle TypeScript
-  testEnvironment: "node", // Default environment (use 'jsdom' for frontend projects)
+  preset: "ts-jest",
+  testEnvironment: "node",
+  transform: {
+    "^.+\.tsx?$": ["ts-jest", {}],
+  },
+  moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
 }

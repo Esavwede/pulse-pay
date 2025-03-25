@@ -11,7 +11,8 @@
     "format": "prettier --write \"**/*.{ts,js,json,md,yml}\"",
     "dev": "nodemon ./src/app.ts",
     "release": "semantic-release",
-    "scan-deps": "npm audit"
+    "scan-deps": "npm audit",
+    "build-and-run": "npm run format && npm run lint && npm run build && npm run start"
   },
   "repository": {
     "type": "git",
@@ -65,7 +66,6 @@
     "compression": "^1.8.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
-    "eslint-plugin-jest": "^28.11.0",
     "express": "^4.21.2",
     "express-rate-limit": "^7.5.0",
     "flutterwave-node-v3": "^1.1.15",
