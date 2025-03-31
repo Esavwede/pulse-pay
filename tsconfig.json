@@ -1,5 +1,13 @@
 {
-  "include": ["src/**/*", "index.ts", "__tests__", "types/declaration.d.ts"], // Include all files in the src directory and index.ts
+  "include": [
+    "src/**/*",
+    "index.ts",
+    "__tests__",
+    "types/declaration.d.ts",
+    "____sample/**/*",
+    ".eslintrc.js",
+    "__mocks__"
+  ], // Include all files in the src directory and index.ts
   "exclude": ["node_modules"], // Exclude the node_modules directory
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig to read more about this file */
