@@ -22,6 +22,7 @@ function extractJsonFromJson(jsonData) {
                 status: data.status,
             },
         };
+        logger_1.default.info("Util: payment details extracted successfully");
         return paymentDetails;
     }
     catch (e) {
