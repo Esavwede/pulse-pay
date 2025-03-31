@@ -20,7 +20,6 @@ class PaymentController {
     processPayment(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                console.log(" In payment controller");
                 const response = yield this.paymentService.processPayment(req.body);
                 res.status(200).json({ response });
             }

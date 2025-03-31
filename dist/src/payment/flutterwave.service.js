@@ -39,15 +39,14 @@ const chargeViaBankTransfer = (data) => __awaiter(void 0, void 0, void 0, functi
         device_fingerprint: "62wd23423rq324323qew1",
         expires: 3600,
     };
-    console.log("---charging by bank transfer");
+    logger_1.default.info("Flutterwave: Initiating charge by bank transfer");
     const response = yield flw.Charge.bank_transfer(payload);
     if (response.status === "error") {
-        console.log("payment initiation failed");
-        console.log(response);
+        logger_1.default.error(response, "Flutterwave: Could not initiate charge by bank transfer");
         throw new ApiError_1.default("server error", 503);
     }
     (0, append_transaction_id_to_response_1.default)(response, txRef);
-    logger_1.default.info("Payment details generated. Awaiting Payment");
+    logger_1.default.info("Flutterwave: charge by bank transfer initiated. Awaiting Payment");
     return response;
 });
 exports.chargeViaBankTransfer = chargeViaBankTransfer;
@@ -56,10 +55,10 @@ const verifyPayment = (txRef) => __awaiter(void 0, void 0, void 0, function* () 
         tx_ref: txRef,
     });
     if (response.status === "error") {
-        logger_1.default.error(response.message);
+        logger_1.default.error(response.message, "Flutterwave: Could not fetch payment details for verification");
         throw new ApiError_1.default(response.message, 404);
     }
-    logger_1.default.info("Payment details fetched");
+    logger_1.default.info("Flutterwave: Payment details fetched");
     return response;
 });
 exports.verifyPayment = verifyPayment;
