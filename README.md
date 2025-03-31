@@ -4,6 +4,10 @@
 
 Pulse-pay is an api that allows users to receive payments
 
+## Documentation
+
+- [View Documentation](https://documenter.getpostman.com/view/36363144/2sB2cRC47S)
+
 ## Features
 
 - receive payments via bank transfer
@@ -11,6 +15,7 @@ Pulse-pay is an api that allows users to receive payments
 ## Prerequisites
 
 - [Node.js](https://nodejs.org/) (v22.14.0)
+- [Mongodb](https://www.mongodb.com/)
 
 ## Installation
 
@@ -34,6 +39,9 @@ Pulse-pay is an api that allows users to receive payments
    # FLUTTERWAVE
    FLW_PUBLIC_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
    FLW_SECRET_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+   # DATABASE
+   DB_URI=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
    ```
 
 4. Build:
