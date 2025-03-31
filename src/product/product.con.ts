@@ -27,15 +27,7 @@ class ProductController {
   ) {
     try {
       const createdProduct = await this.productService.create(req.body)
-      // Store response in memory (expires after 5 minutes)
-      idempotencyStore[res.locals.idempotencyKey] = createdProduct
 
-      setTimeout(
-        () => {
-          delete idempotencyStore[res.locals.idempotencyKey] // Auto-cleanup
-        },
-        5 * 60 * 1000,
-      ) // 5 minutes
       res.status(201).json({
         status: "success",
         message: "product created",

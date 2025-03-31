@@ -2,22 +2,38 @@ import { z } from "zod"
 
 export const CreateProductRequestSchema = z.object({
   body: z.object({
-    name: z.string({
-      invalid_type_error: "product name must be of type: string",
-      required_error: "product name is required",
-    }),
-    category: z.string({
-      invalid_type_error: "product category name must be of type: string",
-      required_error: "product category is required",
-    }),
-    price: z.number({
-      invalid_type_error: "product price must be of type: number",
-      required_error: "product price is required",
-    }),
-    description: z.string({
-      invalid_type_error: "product description must be of type: string",
-      required_error: "product description is required",
-    }),
+    name: z
+      .string({
+        invalid_type_error: "product name must be of type: string",
+        required_error: "product name is required",
+      })
+      .min(3, {
+        message: "product name must be at least 3 characters long",
+      }),
+    category: z
+      .string({
+        invalid_type_error: "product category name must be of type: string",
+        required_error: "product category is required",
+      })
+      .min(3, {
+        message: "product category must be at least 3 characters long",
+      }),
+    price: z
+      .number({
+        invalid_type_error: "product price must be of type: number",
+        required_error: "product price is required",
+      })
+      .min(3, {
+        message: "product price be at least 3",
+      }),
+    description: z
+      .string({
+        invalid_type_error: "product description must be of type: string",
+        required_error: "product description is required",
+      })
+      .min(3, {
+        message: "product description must be at least 3 characters long",
+      }),
   }),
 })
 

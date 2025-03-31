@@ -11,10 +11,16 @@ import ApiError from "../shared/utils/ApiError"
 export class ProductRepo {
   async create(product: CreateProductRequestDto) {
     try {
-      const createdProduct = await ProductModel.create(product)
+      const newProduct = new ProductModel(product)
+
+      const createdProduct = await newProduct.save()
       logger.info("ProductRepo: Product created")
       return createdProduct.toObject()
     } catch (e: any) {
+      if (e?.code === 11000) {
+        logger.error(e.message, "Duplicate key error detected:")
+        throw new ApiError("product exists", 400)
+      }
       logger.error(e, "database error")
       throw new ApiError("server error", 500)
     }

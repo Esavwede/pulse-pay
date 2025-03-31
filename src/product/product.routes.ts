@@ -15,7 +15,6 @@ export default function productRoutes(app: Application) {
   router.post(
     "/",
     validateRequest(CreateProductRequestSchema),
-    setIdempotency, //  A temporary implementation for development, will upgrade to redis
     productController.create.bind(productController),
   )
 
