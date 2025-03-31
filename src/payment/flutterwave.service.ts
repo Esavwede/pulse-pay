@@ -22,28 +22,34 @@ const flw = new Flutterwave(
 
 // eslint-disable-next-line consistent-return
 export const chargeViaBankTransfer = async (data: PaymentDto) => {
-  try {
-    const txRef = uuidv4()
-    const payload = {
-      tx_ref: txRef,
-      amount: data.amount,
-      email: data.email,
-      fullname: data.name,
-      phone_number: "054709929220",
-      currency: "NGN",
-      client_ip: "154.123.220.1",
-      device_fingerprint: "62wd23423rq324323qew1",
-      expires: 3600,
-    }
-
-    const response = await flw.Charge.bank_transfer(payload)
-    appendTxRefToResponse(response, txRef)
-    logger.info("Payment details generated. Awaiting Payment")
-    return response
-  } catch (e) {
-    logger.error(e, "Payment Error")
-    throw new ApiError("server error", 500)
+  const txRef = uuidv4()
+  const payload = {
+    tx_ref: txRef,
+    amount: data.amount,
+    email: data.email,
+    fullname: data.name,
+    phone_number: "054709929220",
+    currency: "NGN",
+    client_ip: "154.123.220.1",
+    device_fingerprint: "62wd23423rq324323qew1",
+    expires: 3600,
   }
+
+  logger.info("Flutterwave: Initiating charge by bank transfer")
+  const response = await flw.Charge.bank_transfer(payload)
+
+  if (response.status === "error") {
+    logger.error(
+      response,
+      "Flutterwave: Could not initiate charge by bank transfer",
+    )
+    throw new ApiError("server error", 503)
+  }
+  appendTxRefToResponse(response, txRef)
+  logger.info(
+    "Flutterwave: charge by bank transfer initiated. Awaiting Payment",
+  )
+  return response
 }
 
 export const verifyPayment = async (txRef: string): Promise<any> => {
@@ -52,9 +58,12 @@ export const verifyPayment = async (txRef: string): Promise<any> => {
   })
 
   if (response.status === "error") {
-    logger.error(response.message)
+    logger.error(
+      response.message,
+      "Flutterwave: Could not fetch payment details for verification",
+    )
     throw new ApiError(response.message, 404)
   }
-  logger.info("Payment details fetched")
+  logger.info("Flutterwave: Payment details fetched")
   return response
 }

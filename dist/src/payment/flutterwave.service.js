@@ -27,28 +27,28 @@ if (!process.env.FLW_PUBLIC_KEY || !process.env.FLW_SECRET_KEY) {
 const flw = new flutterwave_node_v3_1.default(process.env.FLW_PUBLIC_KEY, process.env.FLW_SECRET_KEY);
 // eslint-disable-next-line consistent-return
 const chargeViaBankTransfer = (data) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const txRef = (0, uuid_1.v4)();
-        const payload = {
-            tx_ref: txRef,
-            amount: data.amount,
-            email: data.email,
-            fullname: data.name,
-            phone_number: "054709929220",
-            currency: "NGN",
-            client_ip: "154.123.220.1",
-            device_fingerprint: "62wd23423rq324323qew1",
-            expires: 3600,
-        };
-        const response = yield flw.Charge.bank_transfer(payload);
-        (0, append_transaction_id_to_response_1.default)(response, txRef);
-        logger_1.default.info("Payment details generated. Awaiting Payment");
-        return response;
+    const txRef = (0, uuid_1.v4)();
+    const payload = {
+        tx_ref: txRef,
+        amount: data.amount,
+        email: data.email,
+        fullname: data.name,
+        phone_number: "054709929220",
+        currency: "NGN",
+        client_ip: "154.123.220.1",
+        device_fingerprint: "62wd23423rq324323qew1",
+        expires: 3600,
+    };
+    console.log("---charging by bank transfer");
+    const response = yield flw.Charge.bank_transfer(payload);
+    if (response.status === "error") {
+        console.log("payment initiation failed");
+        console.log(response);
+        throw new ApiError_1.default("server error", 503);
     }
-    catch (e) {
-        logger_1.default.error(e, "Payment Error");
-        throw new ApiError_1.default("server error", 500);
-    }
+    (0, append_transaction_id_to_response_1.default)(response, txRef);
+    logger_1.default.info("Payment details generated. Awaiting Payment");
+    return response;
 });
 exports.chargeViaBankTransfer = chargeViaBankTransfer;
 const verifyPayment = (txRef) => __awaiter(void 0, void 0, void 0, function* () {

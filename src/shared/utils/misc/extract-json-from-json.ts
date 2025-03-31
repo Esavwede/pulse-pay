@@ -18,6 +18,7 @@ export default function extractJsonFromJson(jsonData: any) {
         status: data.status,
       },
     }
+    logger.info("Util: payment details extracted successfully")
     return paymentDetails
   } catch (e) {
     logger.error(e, "Extract Payment Details")

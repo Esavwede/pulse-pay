@@ -11,6 +11,7 @@ const errorHandler = (
   next: NextFunction,
 ) => {
   logger.error(err)
+  console.log(err)
   const statusCode = err.statusCode || 500
   res.status(statusCode).json({
     success: false,

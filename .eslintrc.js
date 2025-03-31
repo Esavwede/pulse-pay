@@ -19,6 +19,12 @@ module.exports = {
     "no-console": "off",
     "prettier/prettier": "error",
     semi: ["error", "never"],
+    "no-underscore-dangle": [
+      "error",
+      {
+        allow: ["_id"],
+      },
+    ],
   },
   settings: {
     "import/resolver": {

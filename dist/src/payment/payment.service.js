@@ -13,19 +13,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const flutterwave_service_1 = require("./flutterwave.service");
-const ApiError_1 = __importDefault(require("../shared/utils/ApiError"));
 const extract_json_from_json_1 = __importDefault(require("../shared/utils/misc/extract-json-from-json"));
 class PaymentService {
     // eslint-disable-next-line class-methods-use-this
     processPayment(data) {
         return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const response = yield (0, flutterwave_service_1.chargeViaBankTransfer)(data);
-                return response;
-            }
-            catch (e) {
-                throw new ApiError_1.default("server error", 500);
-            }
+            console.log("in payment services");
+            const response = yield (0, flutterwave_service_1.chargeViaBankTransfer)(data);
+            return response;
         });
     }
     // eslint-disable-next-line class-methods-use-this

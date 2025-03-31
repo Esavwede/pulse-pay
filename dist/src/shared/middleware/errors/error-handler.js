@@ -8,6 +8,7 @@ const errorHandler = (err, req, res,
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 next) => {
     logger_1.default.error(err);
+    console.log(err);
     const statusCode = err.statusCode || 500;
     res.status(statusCode).json({
         success: false,
