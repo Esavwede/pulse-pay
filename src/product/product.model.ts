@@ -14,6 +14,7 @@ const ProductSchema = new Schema(
   {
     name: {
       type: String,
+      unique: true,
       required: true,
     },
     category: {
@@ -32,7 +33,7 @@ const ProductSchema = new Schema(
     sku: {
       type: String,
       required: true,
-      default: "fadfafad",
+      default: "just a default",
     },
     description: {
       type: String,
